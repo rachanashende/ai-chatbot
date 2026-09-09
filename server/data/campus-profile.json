@@ -1,0 +1,24 @@
+{
+  "college_name": "Your College Name",
+  "departments": [
+    "Computer Science",
+    "Electronics & Communication",
+    "Mechanical Engineering",
+    "Civil Engineering",
+    "Information Science"
+  ],
+  "academic_calendar": {
+    "odd_semester": "August to December",
+    "even_semester": "January to May",
+    "notes": "Each semester includes a 2-week add/drop window at the start and a 3-week exam period at the end."
+  },
+  "add_drop_policy": "Students can swap electives within the first 2 weeks of a semester without approval. After that, changes require written approval from the department.",
+  "fees_policy": "Tuition is due at the start of each semester. A late fee applies after a 2-week grace period. Fee clearance is required before hall tickets are released.",
+  "contacts": {
+    "registrar": "registrar@college.edu",
+    "exam_cell": "examcell@college.edu",
+    "admissions_office": "admissions@college.edu",
+    "hostel_warden": "hostel@college.edu"
+  },
+  "general_notes": "This profile is used as background grounding when a question doesn't match a specific FAQ. Expand this file with more detail (department-specific rules, club information, campus locations) as needed — the more specific and accurate this is, the better the assistant can reason about edge-case questions without guessing."
+}

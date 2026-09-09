@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --coral: #F29191;
+  --blush: #F7ADAD;
+  --mint: #B1E5E6;
+  --mint-pale: #CCFBFA;
+  --surface: #FFFFFF;
+  --ink: #2E2A2A;
+  --ink-soft: #6B6462;
+
+  /* Tag colors by tier — extend this if you add more tiers later */
+  --tag-admissions: #F29191;
+  --tag-registration: #F7ADAD;
+  --tag-exams: #E8A0D8;
+  --tag-campus: #9AD1C7;
+  --tag-campusinfo: #A9A49F;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--mint-pale);
+  color: var(--ink);
+}

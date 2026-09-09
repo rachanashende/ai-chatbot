@@ -1,0 +1,62 @@
+[
+  {
+    "id": "adm-001",
+    "category": "Admissions",
+    "question": "What is the last date to submit a transfer application?",
+    "answer": "Transfer applications close on July 20th. You'll need your transcript, a transfer letter, and your current ID card uploaded before that date."
+  },
+  {
+    "id": "adm-002",
+    "category": "Admissions",
+    "question": "What documents are required for admission?",
+    "answer": "You'll need your 12th-grade marksheet, transfer certificate, migration certificate (if applicable), 4 passport-size photos, and category certificate (if applicable)."
+  },
+  {
+    "id": "adm-003",
+    "category": "Admissions",
+    "question": "Can I apply without a transfer letter?",
+    "answer": "You can submit without it, but your application stays in 'pending documents' status until it's uploaded — it won't be reviewed until then."
+  },
+  {
+    "id": "reg-001",
+    "category": "Registration",
+    "question": "How do I register for courses this semester?",
+    "answer": "Course registration opens on the student portal one week before semester start. Log in, select your electives, and confirm — you'll get a confirmation email within 24 hours."
+  },
+  {
+    "id": "reg-002",
+    "category": "Registration",
+    "question": "What is the add/drop deadline?",
+    "answer": "You can add or drop electives within the first 2 weeks of the semester. After that, changes require department approval."
+  },
+  {
+    "id": "exam-001",
+    "category": "Exams",
+    "question": "When is the exam schedule released?",
+    "answer": "The exam timetable is published on the portal 3 weeks before the exam period begins, under the 'Examinations' tab."
+  },
+  {
+    "id": "exam-002",
+    "category": "Exams",
+    "question": "How do I apply for revaluation?",
+    "answer": "Revaluation requests open 5 days after results are declared. Apply through the portal and pay the revaluation fee per subject within the 10-day window."
+  },
+  {
+    "id": "exam-003",
+    "category": "Exams",
+    "question": "Where do I get my hall ticket?",
+    "answer": "Hall tickets are available for download on the student portal 5 days before exams begin, once fees are cleared."
+  },
+  {
+    "id": "camp-001",
+    "category": "Campus",
+    "question": "What are the library timings?",
+    "answer": "The library is open 8 AM to 8 PM on weekdays, and 9 AM to 5 PM on weekends. Extended hours apply during exam weeks."
+  },
+  {
+    "id": "camp-002",
+    "category": "Campus",
+    "question": "How do I apply for a hostel room?",
+    "answer": "Hostel applications are submitted through the student portal under 'Accommodation'. Allotment is based on distance from campus and availability."
+  }
+]
