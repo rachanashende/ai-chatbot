@@ -6,29 +6,46 @@ import { speak } from "../hooks/useSpeechRecognition";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
-const CATEGORY_STARTERS = {
-  Admissions: "What do I need to know about admissions?",
-  Registration: "How does course registration work?",
-  Exams: "What should I know about exams?",
-  Campus: "Tell me about general campus info.",
+const CATEGORIES = ["Admissions", "Registration", "Exams", "Campus"];
+
+const GREETINGS = {
+  Admissions: "Hi! Ask me about applications, deadlines, or required documents.",
+  Registration: "Hi! Ask me about course registration or the add/drop process.",
+  Exams: "Hi! Ask me about exam schedules, hall tickets, or revaluation.",
+  Campus: "Hi! Ask me about library hours, hostel, or general campus life.",
 };
 
+function buildInitialMessages() {
+  const initial = {};
+  CATEGORIES.forEach((cat) => {
+    initial[cat] = [{ role: "bot", tag: cat, text: GREETINGS[cat] }];
+  });
+  return initial;
+}
+
 export default function ChatWindow() {
-  const [messages, setMessages] = useState([
-    {
-      role: "bot",
-      tag: "Admissions",
-      text: "Hi! I can help with admissions, registration, exams, and general campus questions. What do you need?",
-    },
-  ]);
+  // Each category keeps its own message history, keyed by name, so
+  // switching tabs shows a genuinely separate conversation rather than
+  // one shared thread with a relabeled header.
+  const [messagesByCategory, setMessagesByCategory] = useState(buildInitialMessages);
   const [input, setInput] = useState("");
   const [activeCategory, setActiveCategory] = useState("Admissions");
   const [loading, setLoading] = useState(false);
 
+  const messages = messagesByCategory[activeCategory];
+
+  function appendMessage(category, message) {
+    setMessagesByCategory((prev) => ({
+      ...prev,
+      [category]: [...prev[category], message],
+    }));
+  }
+
   async function sendQuestion(question) {
     if (!question.trim()) return;
 
-    setMessages((prev) => [...prev, { role: "user", text: question }]);
+    const category = activeCategory;
+    appendMessage(category, { role: "user", text: question });
     setInput("");
     setLoading(true);
 
@@ -40,31 +57,17 @@ export default function ChatWindow() {
       });
       const data = await res.json();
 
-      setMessages((prev) => [
-        ...prev,
-        { role: "bot", tag: data.tier, text: data.answer },
-      ]);
+      appendMessage(category, { role: "bot", tag: data.tier, text: data.answer });
       speak(data.answer);
     } catch (err) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "bot",
-          tag: "CampusInfo",
-          text: "Something went wrong reaching the assistant. Please try again.",
-        },
-      ]);
+      appendMessage(category, {
+        role: "bot",
+        tag: "CampusInfo",
+        text: "Something went wrong reaching the assistant. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
-  }
-
-  // Clicking a category pill updates the header AND sends a starter
-  // question for that topic, so the chat visibly responds instead of
-  // just relabeling an unchanged conversation.
-  function handleCategorySelect(category) {
-    setActiveCategory(category);
-    sendQuestion(CATEGORY_STARTERS[category]);
   }
 
   return (
@@ -77,7 +80,7 @@ export default function ChatWindow() {
             <div className="brand-sub">Ask me anything</div>
           </div>
         </div>
-        <CategoryFilter active={activeCategory} onSelect={handleCategorySelect} />
+        <CategoryFilter active={activeCategory} onSelect={setActiveCategory} />
       </div>
 
       <div className="chat">
