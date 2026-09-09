@@ -6,6 +6,13 @@ import { speak } from "../hooks/useSpeechRecognition";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
+const CATEGORY_STARTERS = {
+  Admissions: "What do I need to know about admissions?",
+  Registration: "How does course registration work?",
+  Exams: "What should I know about exams?",
+  Campus: "Tell me about general campus info.",
+};
+
 export default function ChatWindow() {
   const [messages, setMessages] = useState([
     {
@@ -52,6 +59,14 @@ export default function ChatWindow() {
     }
   }
 
+  // Clicking a category pill updates the header AND sends a starter
+  // question for that topic, so the chat visibly responds instead of
+  // just relabeling an unchanged conversation.
+  function handleCategorySelect(category) {
+    setActiveCategory(category);
+    sendQuestion(CATEGORY_STARTERS[category]);
+  }
+
   return (
     <div className="app">
       <div className="sidebar">
@@ -62,7 +77,7 @@ export default function ChatWindow() {
             <div className="brand-sub">Ask me anything</div>
           </div>
         </div>
-        <CategoryFilter active={activeCategory} onSelect={setActiveCategory} />
+        <CategoryFilter active={activeCategory} onSelect={handleCategorySelect} />
       </div>
 
       <div className="chat">
