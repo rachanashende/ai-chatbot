@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import MessageBubble from "./MessageBubble";
 import CategoryFilter from "./CategoryFilter";
 import VoiceButton from "./VoiceButton";
-import { speak } from "../hooks/useSpeechRecognition";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
@@ -58,7 +57,6 @@ export default function ChatWindow() {
       const data = await res.json();
 
       appendMessage(category, { role: "bot", tag: data.tier, text: data.answer });
-      speak(data.answer);
     } catch (err) {
       appendMessage(category, {
         role: "bot",
